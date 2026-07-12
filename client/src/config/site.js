@@ -10,7 +10,7 @@ export const LOGOS = {
 
 export const SOCIAL_LINKS = {
     facebook: 'https://facebook.com/5SpiceMarket',
-    instagramUrl: null,
+    instagramUrl: 'https://instagram.com/5SpiceMarket',
     instagramHandle: '@5SpiceMarket',
     email: 'info@5spicemarket.com',
 };
@@ -19,7 +19,7 @@ export const OFFERINGS = [
     {
         title: 'Premium Halal Market',
         shortTitle: 'Halal Market',
-        text: 'Premium zabiha halal meat, fresh fish, farm-fresh produce, and carefully selected groceries—all under one roof.',
+        text: 'Premium zabiha halal meat, fresh fish, farm-fresh produce, and carefully sourced specialty groceries—all under one roof.',
     },
     {
         title: 'Authentic Bangladeshi Restaurant',
