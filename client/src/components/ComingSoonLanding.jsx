@@ -56,11 +56,8 @@ const ComingSoonLanding = () => {
                         />
                     </div>
 
-                    <div className="relative mx-auto mt-10 max-w-5xl lg:mt-12">
+                    <div className="relative mx-auto mt-8 max-w-5xl lg:mt-10">
                         <div className="relative z-10 animate-fade-in-up text-center">
-                            <p className="mb-4 text-[0.74rem] font-medium uppercase tracking-[0.38em] text-[#D4A84B] sm:text-sm">
-                                Plano, Texas
-                            </p>
                             <h1 className="mx-auto max-w-5xl font-serif text-[2.95rem] font-bold leading-[0.98] text-white sm:text-6xl lg:text-[5rem] xl:text-[5.8rem]">
                                 A New Home Is Coming to{' '}
                                 <span className="block text-[#D4A84B] sm:inline">
@@ -163,13 +160,13 @@ const ComingSoonLanding = () => {
                 </div>
             </section>
 
-            <section aria-labelledby="opening-details" className="relative z-10 px-5 pb-12 sm:px-8 lg:px-12 lg:pb-16">
+            <section aria-labelledby="follow-details" className="relative z-10 px-5 pb-12 sm:px-8 lg:px-12 lg:pb-16">
                 <div className="mx-auto max-w-7xl animate-fade-in-up border border-[#B88A3D]/40 bg-[#101010]/82 px-6 py-8 text-center shadow-[0_26px_90px_rgba(0,0,0,0.25)] sm:px-10">
-                    <h2 id="opening-details" className="font-serif text-3xl font-semibold text-[#D4A84B] sm:text-4xl">
-                        Opening Early 2027, In Sha Allah
+                    <h2 id="follow-details" className="font-serif text-3xl font-semibold text-[#D4A84B] sm:text-4xl">
+                        Follow our journey to opening day.
                     </h2>
                     <p className="mt-4 text-base text-white/75">
-                        Follow our journey to opening day.
+                        Stay connected as we bring 5 Spice Market & Kitchen to Plano.
                     </p>
 
                     <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
