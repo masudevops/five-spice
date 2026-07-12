@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Utensils, Info, Phone, Moon, Sun, Menu, X, ChevronDown, Clock, Search } from 'lucide-react';
+import { ShoppingBag, Utensils, Info, Phone, Moon, Sun, Menu, X, Clock, Search } from 'lucide-react';
 import clsx from 'clsx';
 import useTheme from '../hooks/useTheme';
+import { isComingSoonMode, LOGOS } from '../config/site';
 
 const Navbar = () => {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  const siteMode = import.meta.env.VITE_APP_SITE_MODE || 'live';
-  const isComingSoon = siteMode === 'coming_soon';
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -22,14 +20,14 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Market', path: '/market' },
-    { name: 'Cafe', path: '/cafe' },
+    { name: 'Kitchen', path: '/kitchen' },
     { name: 'Catering', path: '/catering' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
 
   // In Coming Soon mode, strictly hide all navigation
-  if (isComingSoon) {
+  if (isComingSoonMode) {
     return null;
   }
 
@@ -60,9 +58,12 @@ const Navbar = () => {
         <div className="container mx-auto px-4 flex justify-between items-center">
 
           {/* Logo */}
-          <Link to="/" className="flex flex-col items-start group">
-            <h1 className="font-serif text-2xl md:text-3xl font-bold text-brand-green dark:text-white tracking-tight group-hover:opacity-90 transition-opacity">5 Spice</h1>
-            <span className="text-[0.65rem] uppercase tracking-widest text-brand-gold font-semibold">Market & Cafe</span>
+          <Link to="/" className="flex items-center group" aria-label="5 Spice Market & Kitchen home">
+            <img
+              src={LOGOS.wide}
+              alt="5 Spice Market & Kitchen"
+              className="h-11 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
+            />
           </Link>
 
           {/* Desktop Nav - Sprouts Style (Clean, Spacious) */}
@@ -131,8 +132,8 @@ const Navbar = () => {
               <ShoppingBag size={24} />
             </Link>
           </div>
-          <Link to="/cafe" className={clsx("flex flex-col items-center p-2", location.pathname === '/cafe' ? "text-brand-green" : "text-gray-400")}>
-            <Utensils size={20} /> <span className="text-[10px] mt-1 font-medium">Cafe</span>
+          <Link to="/kitchen" className={clsx("flex flex-col items-center p-2", location.pathname === '/kitchen' ? "text-brand-green" : "text-gray-400")}>
+            <Utensils size={20} /> <span className="text-[10px] mt-1 font-medium">Kitchen</span>
           </Link>
           <Link to="/contact" className={clsx("flex flex-col items-center p-2", location.pathname === '/contact' ? "text-brand-green" : "text-gray-400")}>
             <Info size={20} /> <span className="text-[10px] mt-1 font-medium">Info</span>

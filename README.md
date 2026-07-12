@@ -1,20 +1,20 @@
-# 5 Spice Market & Cafe
+# 5 Spice Market & Kitchen
 
-A premium, community-focused website for **5 Spice**, a Halal market and cafe in Dallas/Fort Worth. Designed to invoke a sense of calm, trust, and freshness, inspired by modern grocery experiences like Sprouts Farmers Market.
+A premium, community-focused website for **5 Spice**, a halal market and kitchen opening in Plano, Texas in early 2027, In Sha Allah.
 
 Built with **Node.js**, **React**, **Vite**, and **TailwindCSS**.
 
 ## 🎨 New Brand Identity
-- **Primary Colors**: Deep Forest Green (`#1A4731`) & Matte Gold (`#C8A97E`).
+- **Primary Colors**: Charcoal (`#1C1C1C`), warm cream (`#F8F5EF`), gold (`#B88A3D`), green (`#2D6A3F`), and orange (`#D4500A`).
 - **Aesthetic**: Spacious, cream backgrounds, elegant serif typography, and high-quality imagery.
-- **Philosophy**: "Rooted in Tradition. Crafted for Today."
+- **Philosophy**: "Authentic Flavors. Quality You Trust. Community We Care About."
 
 ## 🚀 Key Features
 - **SITE_MODE Configuration**: Controls the public facing state of the website via environment variables.
   - **`coming_soon`**: A strict, locked "Stealth Mode" landing page. Hides all navigation, footer, and links. Used for pre-launch anticipation.
   - **`grand_opening`**: Full site access with a celebratory banner.
   - **`live`**: Standard operating mode.
-- **Dual Functionality**: Dedicated, distinct sections for **The Market** (Grocery) and **The Kitchen** (Cafe).
+- **Dual Functionality**: Dedicated, distinct sections for **The Market** (Grocery) and **The Kitchen** (Restaurant).
 - **Mobile-First**: Fully responsive design with optimized mobile navigation.
 - **Dark Mode**: Premium dark theme using Charcoal and Gold accents.
 
@@ -30,7 +30,7 @@ five-spice/
 │   ├── .env          # Environment config (SITE_MODE)
 │   ├── src/
 │   │   ├── components/  # Navbar, Footer, Heroes, etc.
-│   │   ├── pages/       # Landing, Market, Cafe, etc.
+│   │   ├── pages/       # Landing, Market, Kitchen, etc.
 │   │   └── ...
 │   └── ...
 ├── server/           # Express Backend

@@ -17,14 +17,14 @@ const Catering = () => {
                     <span className="text-brand-gold font-bold uppercase tracking-widest text-sm mb-4 block">Event Catering</span>
                     <h1 className="text-5xl font-serif font-bold mb-6">Make Your Event Unforgettable</h1>
                     <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                        From weddings to corporate lunches, let 5 Spice bring authentic South Asian flavors to your guests.
+                        From weddings to corporate lunches, let 5 Spice bring authentic Bangladeshi flavors to your guests.
                     </p>
                 </div>
             </div>
 
             <div className="container mx-auto px-4 -mt-16 relative z-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    {popularTrays.map((tray, bgIdx) => (
+                    {popularTrays.map((tray) => (
                         <div key={tray.name} className="bg-white dark:bg-brand-charcoal rounded-2xl shadow-xl overflow-hidden group hover:-translate-y-2 transition-transform">
                             <div className="h-48 overflow-hidden">
                                 <img src={tray.image} alt={tray.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />

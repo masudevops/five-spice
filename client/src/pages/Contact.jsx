@@ -12,14 +12,14 @@ const Contact = () => {
 
     return (
         <div className="container mx-auto px-4 py-12">
-            <h1 className="text-4xl font-bold text-brand-red text-center mb-12">Get in Touch</h1>
+            <h1 className="text-4xl font-bold text-brand-orange text-center mb-12">Get in Touch</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Contact Info & Map */}
                 <div className="space-y-8">
                     <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-brand-gold">
                         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <Clock className="text-brand-red" /> Store Hours
+                            <Clock className="text-brand-orange" /> Store Hours
                         </h2>
                         <ul className="space-y-2 text-gray-600">
                             <li className="flex justify-between border-b pb-2"><span>Mon - Thu</span> <span>9:00 AM - 10:00 PM</span></li>
@@ -32,7 +32,7 @@ const Contact = () => {
                         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
                             <MapPin className="text-brand-green" /> Location
                         </h2>
-                        <p className="text-gray-600 mb-4">123 Halal Ave, Dallas, TX 75001</p>
+                        <p className="text-gray-600 mb-4">Plano, Texas</p>
                         {/* Mock Map */}
                         <div className="w-full h-48 bg-gray-200 rounded flex items-center justify-center text-gray-500">
                             Google Maps Placeholder
@@ -49,7 +49,7 @@ const Contact = () => {
                             <input
                                 type="text"
                                 required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
                                 value={formData.name}
                                 onChange={e => setFormData({ ...formData, name: e.target.value })}
                             />
@@ -59,7 +59,7 @@ const Contact = () => {
                             <input
                                 type="email"
                                 required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
                                 value={formData.email}
                                 onChange={e => setFormData({ ...formData, email: e.target.value })}
                             />
@@ -69,14 +69,14 @@ const Contact = () => {
                             <textarea
                                 rows="4"
                                 required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-red focus:ring-1 focus:ring-brand-red outline-none transition"
+                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
                                 value={formData.message}
                                 onChange={e => setFormData({ ...formData, message: e.target.value })}
                             ></textarea>
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-brand-red text-white font-bold py-3 rounded hover:bg-red-700 transition"
+                            className="w-full bg-brand-green text-white font-bold py-3 rounded hover:bg-brand-lightGreen transition"
                         >
                             SendMessage
                         </button>

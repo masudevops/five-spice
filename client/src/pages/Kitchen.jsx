@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import MenuCard from '../components/MenuCard';
 
-const Cafe = () => {
+const categories = ['Bangladeshi', 'Pakistani', 'Indian', 'Arab', 'Grill', 'Drinks'];
+
+const Kitchen = () => {
     const [menuItems, setMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('Bangladeshi');
-    const [filteredItems, setFilteredItems] = useState([]);
 
     useEffect(() => {
         fetch('http://localhost:5001/api/menu')
@@ -21,21 +22,12 @@ const Cafe = () => {
     }, []);
 
     // Group items by category
-    const categories = ['Bangladeshi', 'Pakistani', 'Indian', 'Arab', 'Grill', 'Drinks'];
-    const groupedMenu = categories.reduce((acc, cat) => {
+    const groupedMenu = useMemo(() => categories.reduce((acc, cat) => {
         const items = menuItems.filter(item => item.category === cat || (cat === 'Grill' && item.category === 'Arab')); // Simple grouping logic
         if (items.length > 0) acc[cat] = items;
         return acc;
-    }, {});
-
-    // Effect to filter items based on active category
-    useEffect(() => {
-        if (menuItems.length > 0) {
-            const itemsForCategory = groupedMenu[activeCategory] || [];
-            setFilteredItems(itemsForCategory);
-        }
-    }, [activeCategory, menuItems, groupedMenu]);
-
+    }, {}), [menuItems]);
+    const filteredItems = groupedMenu[activeCategory] || [];
 
     return (
         <div className="bg-brand-cream dark:bg-brand-dark min-h-screen">
@@ -44,8 +36,8 @@ const Cafe = () => {
                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/food.png')]"></div>
                 <div className="container mx-auto px-4 relative z-10">
                     <span className="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2 block">Authentic Flavors</span>
-                    <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">The 5 Spice Cafe</h1>
-                    <p className="text-gray-300 max-w-2xl mx-auto">From sizzling Tandoori platters to aromatic Biryanis, experience the true taste of South Asia.</p>
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">The 5 Spice Kitchen</h1>
+                    <p className="text-gray-300 max-w-2xl mx-auto">From aromatic biryanis to family-style favorites, experience authentic Bangladeshi cuisine.</p>
                 </div>
             </div>
 
@@ -98,4 +90,4 @@ const Cafe = () => {
     );
 };
 
-export default Cafe;
+export default Kitchen;

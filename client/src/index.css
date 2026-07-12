@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-background: #1c1c1c;
+    --color-text-primary: #f8f5ef;
+    --color-accent-gold: #b88a3d;
+    --color-brand-green: #2d6a3f;
+    --color-brand-orange: #d4500a;
+    --color-white: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+  }
+}
+
 @layer utilities {
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
@@ -26,11 +46,5 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
-}
-
-@layer base {
-  html {
-    scroll-behavior: smooth;
   }
 }
