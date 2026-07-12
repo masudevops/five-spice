@@ -16,15 +16,15 @@ const featureIcons = [ShoppingBasket, Utensils, Users];
 const featureAccents = [
     {
         gradient: 'from-brand-green/45 via-brand-green/10 to-transparent',
-        label: 'Market shelves and fresh produce placeholder',
+        label: 'Abstract market freshness accent',
     },
     {
         gradient: 'from-brand-orange/35 via-brand-gold/10 to-transparent',
-        label: 'Warm kitchen service placeholder',
+        label: 'Abstract warm kitchen accent',
     },
     {
         gradient: 'from-brand-gold/35 via-brand-green/10 to-transparent',
-        label: 'DFW community skyline placeholder',
+        label: 'Abstract DFW community accent',
     },
 ];
 

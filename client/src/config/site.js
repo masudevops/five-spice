@@ -15,6 +15,20 @@ export const SOCIAL_LINKS = {
     email: 'info@5spicemarket.com',
 };
 
+export const CONTACT = {
+    city: 'Plano, Texas',
+    shortCity: 'Plano, TX',
+    website: '5spicemarket.com',
+    email: SOCIAL_LINKS.email,
+    phoneLabel: 'Phone coming soon',
+};
+
+export const HOURS = [
+    { days: 'Mon - Thu', time: '9:00 AM - 10:00 PM' },
+    { days: 'Fri - Sat', time: '9:00 AM - 11:00 PM' },
+    { days: 'Sun', time: '9:00 AM - 10:00 PM' },
+];
+
 export const OFFERINGS = [
     {
         title: 'Premium Halal Market',

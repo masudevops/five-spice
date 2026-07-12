@@ -1,94 +1,97 @@
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Mail, MapPin, Phone, ArrowRight } from 'lucide-react';
-import { LOGOS, SOCIAL_LINKS } from '../config/site';
+import { Facebook, Globe2, Instagram, Mail, MapPin } from 'lucide-react';
+import { CONTACT, HOURS, LOGOS, SOCIAL_LINKS } from '../config/site';
+
+const linkGroups = [
+    {
+        title: 'Explore',
+        links: [
+            ['Home', '/'],
+            ['Market', '/market'],
+            ['Kitchen', '/kitchen'],
+            ['Weekly Specials', '/sales'],
+        ],
+    },
+    {
+        title: 'Services',
+        links: [
+            ['Catering', '/catering'],
+            ['Pickup & Delivery', '/pickup'],
+            ['Our Story', '/about'],
+            ['Contact', '/contact'],
+        ],
+    },
+];
 
 const Footer = () => {
     return (
-        <footer className="bg-brand-charcoal text-white pt-16 pb-24 md:pb-12 border-t-4 border-brand-gold">
-            <div className="container mx-auto px-4">
-
-                {/* Newsletter Section */}
-                <div className="bg-brand-green rounded-2xl p-8 md:p-12 mb-16 relative overflow-hidden shadow-2xl transform -translate-y-24 md:-translate-y-32">
-                    <div className="absolute top-0 right-0 opacity-10">
-                        <svg width="200" height="200" viewBox="0 0 100 100"><path d="M0 0 L100 100 M100 0 L0 100" stroke="white" strokeWidth="2" /></svg>
-                    </div>
-                    <div className="md:flex justify-between items-center relative z-10">
-                        <div className="mb-6 md:mb-0">
-                            <h2 className="text-2xl md:text-3xl font-serif font-bold mb-2">Join the 5 Spice Family</h2>
-                            <p className="text-white/80">Get weekly specials and exclusive offers delivered to your inbox.</p>
-                        </div>
-                        <div className="flex gap-2 w-full md:w-auto">
-                            <input type="email" placeholder="Email Address" className="px-4 py-3 rounded-lg text-gray-900 w-full md:w-72 focus:outline-none focus:ring-2 focus:ring-brand-gold" />
-                            <button className="bg-brand-charcoal hover:bg-black text-white px-6 py-3 rounded-lg font-bold transition flex items-center gap-2">
-                                Subscribe <ArrowRight size={18} />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Main Footer Content */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 -mt-12 md:-mt-16">
+        <footer className="border-t border-[#B88A3D]/25 bg-[#0B0B0B] pb-24 pt-14 text-[#F0EAD6] md:pb-12">
+            <div className="mx-auto max-w-7xl px-5 lg:px-8">
+                <div className="mb-12 grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr_1.1fr]">
                     <div>
                         <img
                             src={LOGOS.wide}
                             alt="5 Spice Market & Kitchen"
-                            className="h-14 w-auto object-contain mb-6"
+                            className="mb-6 h-16 w-auto object-contain"
                         />
-                        <p className="text-gray-400 mb-6 leading-relaxed">
-                            Five spices. One home. Premium halal groceries and authentic Bangladeshi cuisine for Plano and the wider DFW community.
+                        <p className="max-w-sm text-sm leading-7 text-white/62">
+                            Five spices. One home. Premium halal groceries and authentic Bangladeshi cuisine for Plano and the Greater DFW community.
                         </p>
-                        <div className="flex items-center gap-4">
-                            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="5 Spice Market on Facebook" className="bg-white/10 p-2 rounded-full hover:bg-brand-gold hover:text-brand-charcoal transition"><Facebook size={20} /></a>
-                            {/* TODO: Replace href after confirming the official Instagram profile URL for @5SpiceMarket. */}
-                            <a href="#instagram-url-to-confirm" aria-label={`Instagram profile URL to be confirmed for ${SOCIAL_LINKS.instagramHandle}`} className="bg-white/10 p-2 rounded-full hover:bg-brand-gold hover:text-brand-charcoal transition"><Instagram size={20} /></a>
-                            <span className="text-sm text-gray-400">{SOCIAL_LINKS.instagramHandle}</span>
+                        <div className="mt-6 flex items-center gap-3">
+                            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="5 Spice Market on Facebook" className="flex h-11 w-11 items-center justify-center border border-[#B88A3D]/30 text-white/75 transition-colors hover:border-[#D4A84B] hover:text-[#D4A84B]">
+                                <Facebook size={19} />
+                            </a>
+                            <a href={SOCIAL_LINKS.instagramUrl} target="_blank" rel="noreferrer" aria-label="5 Spice Market on Instagram" className="flex h-11 w-11 items-center justify-center border border-[#B88A3D]/30 text-white/75 transition-colors hover:border-[#D4A84B] hover:text-[#D4A84B]">
+                                <Instagram size={19} />
+                            </a>
+                            <span className="text-sm text-white/45">{SOCIAL_LINKS.instagramHandle}</span>
                         </div>
                     </div>
 
-                    <div>
-                        <h3 className="font-serif font-bold text-lg mb-4 text-brand-gold">Quick Links</h3>
-                        <ul className="space-y-2 text-sm text-gray-400">
-                            <li><Link to="/" className="hover:text-white transition">Home</Link></li>
-                            <li><Link to="/market" className="hover:text-white transition">Market</Link></li>
-                            <li><Link to="/kitchen" className="hover:text-white transition">Kitchen</Link></li>
-                            <li><Link to="/sales" className="hover:text-white transition">Weekly Sales</Link></li>
-                            <li><Link to="/catering" className="hover:text-white transition">Event Catering</Link></li>
-                        </ul>
-                    </div>
+                    {linkGroups.map((group) => (
+                        <div key={group.title}>
+                            <h2 className="mb-5 font-serif text-xl font-semibold text-[#D4A84B]">{group.title}</h2>
+                            <ul className="space-y-3 text-sm text-white/58">
+                                {group.links.map(([label, href]) => (
+                                    <li key={href}>
+                                        <Link to={href} className="transition-colors hover:text-white">{label}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
 
                     <div>
-                        <h4 className="text-lg font-bold mb-6 text-white border-b-2 border-brand-orange inline-block pb-1">Contact</h4>
-                        <ul className="space-y-4 text-gray-400">
-                            <li className="flex items-start gap-3">
-                                <MapPin size={20} className="text-brand-gold mt-1 shrink-0" />
-                                <span>Plano, TX</span>
+                        <h2 className="mb-5 font-serif text-xl font-semibold text-[#D4A84B]">Visit</h2>
+                        <ul className="space-y-4 text-sm text-white/62">
+                            <li className="flex gap-3">
+                                <MapPin size={18} className="mt-0.5 shrink-0 text-[#D4A84B]" />
+                                <span>{CONTACT.city}</span>
                             </li>
-                            <li className="flex items-center gap-3">
-                                <Phone size={20} className="text-brand-gold shrink-0" />
-                                <span>(123)-456-789</span>
+                            <li className="flex gap-3">
+                                <Mail size={18} className="mt-0.5 shrink-0 text-[#D4A84B]" />
+                                <a href={`mailto:${CONTACT.email}`} className="transition-colors hover:text-white">{CONTACT.email}</a>
                             </li>
-                            <li className="flex items-center gap-3">
-                                <Mail size={20} className="text-brand-gold shrink-0" />
-                                <a href="https://5spicemarket.com" target="_blank" rel="noreferrer" className="hover:text-white transition">5spicemarket.com</a>
+                            <li className="flex gap-3">
+                                <Globe2 size={18} className="mt-0.5 shrink-0 text-[#D4A84B]" />
+                                <a href="https://5spicemarket.com" target="_blank" rel="noreferrer" className="transition-colors hover:text-white">{CONTACT.website}</a>
                             </li>
                         </ul>
-                    </div>
-
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white border-b-2 border-brand-orange inline-block pb-1">Opening Hours</h4>
-                        <ul className="space-y-2 text-gray-400 text-sm">
-                            <li className="flex justify-between border-b border-white/10 pb-2"><span>Mon - Thu</span> <span className="text-white">9:00 AM - 10:00 PM</span></li>
-                            <li className="flex justify-between border-b border-white/10 pb-2"><span>Fri</span> <span className="text-white">9:00 AM - 11:00 PM</span></li>
-                            <li className="flex justify-between border-b border-white/10 pb-2"><span>Sat</span> <span className="text-white">9:00 AM - 11:00 PM</span></li>
-                            <li className="flex justify-between"><span>Sun</span> <span className="text-white">9:00 AM - 10:00 PM</span></li>
-                        </ul>
-                        <div className="mt-4 bg-brand-gold/20 text-brand-gold px-4 py-2 rounded-lg text-xs font-bold text-center">
-                            Jummah Break: 1:00 PM - 2:00 PM
+                        <div className="mt-6 border border-[#B88A3D]/20 p-4">
+                            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#D4A84B]">Hours</p>
+                            <ul className="space-y-2 text-xs text-white/58">
+                                {HOURS.map((item) => (
+                                    <li key={item.days} className="flex justify-between gap-4">
+                                        <span>{item.days}</span>
+                                        <span className="text-white/78">{item.time}</span>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>
 
-                <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <div className="border-t border-white/10 pt-6 text-center text-xs text-white/38">
                     <p>&copy; {new Date().getFullYear()} 5 Spice Market & Kitchen. All rights reserved.</p>
                 </div>
             </div>

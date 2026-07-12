@@ -1,80 +1,53 @@
 import React from 'react';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Mail } from 'lucide-react';
+import { CONTACT } from '../config/site';
+
+const cateringHighlights = [
+    '100% zabiha halal meat options',
+    'Authentic Bangladeshi and South Asian dishes',
+    'Family trays and event-size portions',
+    'Manual quote confirmation by the 5 Spice team',
+];
 
 const Catering = () => {
-    const popularTrays = [
-        { name: "Chicken Biryani Tray", serves: "10-12", price: 80, image: "https://placehold.co/400x300?text=Biryani" },
-        { name: "Lamb Curry Tray", serves: "10-12", price: 120, image: "https://placehold.co/400x300?text=Lamb+Curry" },
-        { name: "Tandoori Chicken Leg (20pc)", serves: "10", price: 70, image: "https://placehold.co/400x300?text=Tandoori" },
-        { name: "Seekh Kabab (25pc)", serves: "10-12", price: 90, image: "https://placehold.co/400x300?text=Seekh+Kabab" },
-    ];
-
     return (
-        <div className="bg-brand-cream dark:bg-brand-dark min-h-screen pb-20">
-            {/* Hero */}
-            <div className="bg-brand-charcoal text-white py-20 text-center relative overflow-hidden">
-                <div className="container mx-auto px-4 relative z-10">
-                    <span className="text-brand-gold font-bold uppercase tracking-widest text-sm mb-4 block">Event Catering</span>
-                    <h1 className="text-5xl font-serif font-bold mb-6">Make Your Event Unforgettable</h1>
-                    <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                        From weddings to corporate lunches, let 5 Spice bring authentic Bangladeshi flavors to your guests.
+        <div className="min-h-screen bg-[#0E0E0E] text-[#F0EAD6]">
+            <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(184,138,61,0.14),transparent_34%),linear-gradient(135deg,#0E0E0E,#161616)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#D4A84B]">Event Catering</p>
+                    <h1 className="mt-5 max-w-4xl font-serif text-5xl font-bold leading-tight text-white md:text-6xl">Food your family and guests will recognize.</h1>
+                    <p className="mt-5 max-w-2xl text-lg leading-8 text-white/68">
+                        Weddings, office meals, community events, family gatherings, and special occasions with authentic flavor and careful planning.
                     </p>
                 </div>
-            </div>
+            </section>
 
-            <div className="container mx-auto px-4 -mt-16 relative z-20">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                    {popularTrays.map((tray) => (
-                        <div key={tray.name} className="bg-white dark:bg-brand-charcoal rounded-2xl shadow-xl overflow-hidden group hover:-translate-y-2 transition-transform">
-                            <div className="h-48 overflow-hidden">
-                                <img src={tray.image} alt={tray.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                            </div>
-                            <div className="p-6">
-                                <h3 className="font-bold text-lg mb-2 text-brand-red">{tray.name}</h3>
-                                <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
-                                    <span>Serves {tray.serves}</span>
-                                    <span className="font-bold text-lg text-brand-green">${tray.price}</span>
-                                </div>
-                                <button className="w-full border border-brand-red text-brand-red font-bold py-2 rounded-lg hover:bg-brand-red hover:text-white transition-colors">
-                                    Add to Request
-                                </button>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h2 className="text-3xl font-serif font-bold text-brand-charcoal dark:text-white mb-6">Why Choose 5 Spice Catering?</h2>
-                        <ul className="space-y-4">
-                            {['100% Zabiha Halal Certified Meat', 'Authentic Family Recipes', 'Flexible Menu Customization', 'Competitive Pricing for Large Orders', 'Delivery & Setup Available'].map(item => (
-                                <li key={item} className="flex items-center gap-3 text-lg text-gray-700 dark:text-gray-300">
-                                    <CheckCircle className="text-brand-gold" /> {item}
+            <section className="px-5 pb-20 sm:px-8 lg:px-12">
+                <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+                    <div className="border border-[#B88A3D]/25 bg-[#141414] p-7">
+                        <h2 className="font-serif text-3xl font-semibold text-white">Catering Details</h2>
+                        <ul className="mt-7 space-y-4">
+                            {cateringHighlights.map(item => (
+                                <li key={item} className="flex gap-3 text-white/68">
+                                    <CheckCircle className="mt-0.5 shrink-0 text-[#D4A84B]" size={19} />
+                                    <span>{item}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    <div className="bg-white dark:bg-brand-charcoal p-8 rounded-2xl shadow-lg">
-                        <h3 className="text-2xl font-bold mb-6 text-center">Request a Quote</h3>
-                        <form className="space-y-4">
-                            <div className="grid grid-cols-2 gap-4">
-                                <input type="text" placeholder="Your Name" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700" />
-                                <input type="text" placeholder="Phone Number" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700" />
-                            </div>
-                            <input type="email" placeholder="Email Address" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700" />
-                            <div className="grid grid-cols-2 gap-4">
-                                <input type="date" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700" />
-                                <input type="number" placeholder="Guest Count" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700" />
-                            </div>
-                            <textarea placeholder="Tell us about your event..." rows="4" className="w-full p-3 border rounded-lg dark:bg-gray-800 dark:border-gray-700"></textarea>
-                            <button type="button" className="w-full bg-brand-green text-white font-bold py-4 rounded-lg shadow hover:bg-green-800 transition">
-                                Submit Inquiry
-                            </button>
-                        </form>
+                    <div className="border border-[#B88A3D]/25 bg-[#101010] p-7">
+                        <h2 className="font-serif text-3xl font-semibold text-[#D4A84B]">Request a Quote</h2>
+                        <p className="mt-4 leading-7 text-white/62">
+                            Online catering checkout is not enabled yet. Send your event details and the team will confirm availability, menu options, and pricing manually.
+                        </p>
+                        <a href={`mailto:${CONTACT.email}?subject=5%20Spice%20Catering%20Request`} className="mt-7 inline-flex items-center gap-3 bg-[#2D6A3F] px-6 py-4 font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#245936]">
+                            <Mail size={19} /> Email Catering Request
+                        </a>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

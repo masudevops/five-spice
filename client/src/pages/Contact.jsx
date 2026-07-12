@@ -1,88 +1,66 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import React from 'react';
+import { Clock, Globe2, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { CONTACT, HOURS, SOCIAL_LINKS } from '../config/site';
 
 const Contact = () => {
-    const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        alert('Thank you for contacting us! We will get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
-    };
-
     return (
-        <div className="container mx-auto px-4 py-12">
-            <h1 className="text-4xl font-bold text-brand-orange text-center mb-12">Get in Touch</h1>
+        <div className="min-h-screen bg-[#0E0E0E] text-[#F0EAD6]">
+            <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(184,138,61,0.14),transparent_34%),linear-gradient(135deg,#0E0E0E,#161616)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#D4A84B]">Contact</p>
+                    <h1 className="mt-5 font-serif text-5xl font-bold text-white md:text-6xl">Plan your visit.</h1>
+                    <p className="mt-5 max-w-2xl text-lg leading-8 text-white/68">
+                        Questions about the market, kitchen, catering, or launch updates? Reach the 5 Spice team directly.
+                    </p>
+                </div>
+            </section>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Contact Info & Map */}
-                <div className="space-y-8">
-                    <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-brand-gold">
-                        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <Clock className="text-brand-orange" /> Store Hours
-                        </h2>
-                        <ul className="space-y-2 text-gray-600">
-                            <li className="flex justify-between border-b pb-2"><span>Mon - Thu</span> <span>9:00 AM - 10:00 PM</span></li>
-                            <li className="flex justify-between border-b pb-2"><span>Fri - Sat</span> <span>9:00 AM - 11:00 PM</span></li>
-                            <li className="flex justify-between"><span>Sun</span> <span>9:00 AM - 10:00 PM</span></li>
-                        </ul>
+            <section className="px-5 pb-20 sm:px-8 lg:px-12">
+                <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[1fr_1fr]">
+                    <div className="grid gap-5">
+                        <article className="border border-[#B88A3D]/25 bg-[#141414] p-7">
+                            <MapPin className="mb-4 text-[#D4A84B]" size={28} />
+                            <h2 className="font-serif text-3xl font-semibold text-white">Location</h2>
+                            <p className="mt-3 text-white/62">{CONTACT.city}</p>
+                        </article>
+                        <article className="border border-[#B88A3D]/25 bg-[#141414] p-7">
+                            <Clock className="mb-4 text-[#D4A84B]" size={28} />
+                            <h2 className="font-serif text-3xl font-semibold text-white">Hours</h2>
+                            <ul className="mt-5 space-y-3 text-white/62">
+                                {HOURS.map((item) => (
+                                    <li key={item.days} className="flex justify-between gap-4 border-b border-white/8 pb-3">
+                                        <span>{item.days}</span>
+                                        <span className="text-white/82">{item.time}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </article>
                     </div>
 
-                    <div className="bg-white p-6 rounded-lg shadow-md border-l-4 border-brand-green">
-                        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-                            <MapPin className="text-brand-green" /> Location
-                        </h2>
-                        <p className="text-gray-600 mb-4">Plano, Texas</p>
-                        {/* Mock Map */}
-                        <div className="w-full h-48 bg-gray-200 rounded flex items-center justify-center text-gray-500">
-                            Google Maps Placeholder
+                    <div className="border border-[#B88A3D]/25 bg-[#101010] p-7">
+                        <MessageCircle className="mb-4 text-[#D4A84B]" size={30} />
+                        <h2 className="font-serif text-3xl font-semibold text-[#D4A84B]">Get in Touch</h2>
+                        <p className="mt-4 leading-7 text-white/62">
+                            The website does not use a backend contact form yet. Email is the official contact path for launch questions and partnership inquiries.
+                        </p>
+                        <div className="mt-7 grid gap-3">
+                            <a href={`mailto:${CONTACT.email}`} className="flex items-center gap-3 border border-[#B88A3D]/30 px-5 py-4 text-white/78 transition-colors hover:border-[#D4A84B] hover:text-white">
+                                <Mail size={19} className="text-[#D4A84B]" />
+                                {CONTACT.email}
+                            </a>
+                            <a href="https://5spicemarket.com" target="_blank" rel="noreferrer" className="flex items-center gap-3 border border-[#B88A3D]/30 px-5 py-4 text-white/78 transition-colors hover:border-[#D4A84B] hover:text-white">
+                                <Globe2 size={19} className="text-[#D4A84B]" />
+                                {CONTACT.website}
+                            </a>
+                            <a href={SOCIAL_LINKS.instagramUrl} target="_blank" rel="noreferrer" className="flex items-center gap-3 border border-[#B88A3D]/30 px-5 py-4 text-white/78 transition-colors hover:border-[#D4A84B] hover:text-white">
+                                <MessageCircle size={19} className="text-[#D4A84B]" />
+                                {SOCIAL_LINKS.instagramHandle}
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                {/* Contact Form */}
-                <div className="bg-white p-8 rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                        <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
-                                value={formData.name}
-                                onChange={e => setFormData({ ...formData, name: e.target.value })}
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
-                            <input
-                                type="email"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
-                                value={formData.email}
-                                onChange={e => setFormData({ ...formData, email: e.target.value })}
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2">Message</label>
-                            <textarea
-                                rows="4"
-                                required
-                                className="w-full p-3 border border-gray-300 rounded focus:border-brand-orange focus:ring-1 focus:ring-brand-orange outline-none transition"
-                                value={formData.message}
-                                onChange={e => setFormData({ ...formData, message: e.target.value })}
-                            ></textarea>
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full bg-brand-green text-white font-bold py-3 rounded hover:bg-brand-lightGreen transition"
-                        >
-                            SendMessage
-                        </button>
-                    </form>
-                </div>
-            </div>
+            </section>
         </div>
     );
 };

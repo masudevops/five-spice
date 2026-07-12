@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import ProductCard from '../components/ProductCard';
-import { Search } from 'lucide-react';
+import { Search, SlidersHorizontal } from 'lucide-react';
+
+const categories = ['All', 'Spices', 'Rice', 'Meat', 'Produce', 'Frozen', 'Bakery'];
 
 const Market = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
-
-    const categories = ['All', 'Spices', 'Rice', 'Meat', 'Produce', 'Frozen', 'Bakery'];
 
     useEffect(() => {
         fetch('http://localhost:5001/api/products')
@@ -18,9 +18,8 @@ const Market = () => {
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Error fetching products:", err);
+                console.error('Error fetching products:', err);
                 setLoading(false);
-                // Fallback or mock data could go here if server is down
             });
     }, []);
 
@@ -36,72 +35,81 @@ const Market = () => {
     }, [activeCategory, searchQuery, products]);
 
     return (
-        <div className="bg-brand-cream/30 dark:bg-brand-dark min-h-screen">
-            <div className="container mx-auto px-4 py-8">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">
-                    <div>
-                        <h1 className="text-4xl font-serif font-bold text-brand-green dark:text-brand-gold mb-2">Halal Market</h1>
-                        <p className="text-gray-600 dark:text-gray-400">Fresh produce, premium meats, and authentic spices.</p>
-                    </div>
-
-                    <div className="relative w-full md:w-96 group">
-                        <input
-                            type="text"
-                            placeholder="Search products..."
-                            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-brand-charcoal border border-gray-200 dark:border-gray-700 rounded-full focus:border-brand-green focus:ring-2 focus:ring-brand-green/20 outline-none transition-all shadow-sm group-hover:shadow-md"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                        />
-                        <Search className="absolute left-4 top-3.5 text-gray-400 group-focus-within:text-brand-green transition-colors" size={20} />
+        <div className="min-h-screen bg-[#0E0E0E] text-[#F0EAD6]">
+            <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(45,106,63,0.18),transparent_34%),linear-gradient(135deg,#0E0E0E,#161616)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#D4A84B]">Premium Halal Market</p>
+                    <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_0.85fr] lg:items-end">
+                        <div>
+                            <h1 className="font-serif text-5xl font-bold leading-tight text-white md:text-6xl">Browse the market.</h1>
+                            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/68">
+                                Fresh produce, fresh fish, premium zabiha halal meat, spices, rice, frozen essentials, and specialty groceries for every family kitchen.
+                            </p>
+                        </div>
+                        <div className="relative">
+                            <label htmlFor="market-search" className="sr-only">Search products</label>
+                            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#D4A84B]" size={20} />
+                            <input
+                                id="market-search"
+                                type="text"
+                                placeholder="Search products..."
+                                className="w-full border border-[#B88A3D]/35 bg-[#141414]/90 py-4 pl-12 pr-4 text-white placeholder:text-white/38 outline-none transition-colors focus:border-[#D4A84B]"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                            />
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div className="flex flex-col lg:flex-row gap-8">
-                    {/* Sidebar Filters (Desktop) / Horizontal (Mobile) */}
-                    <div className="w-full lg:w-64 flex-shrink-0">
-                        <div className="bg-white dark:bg-brand-charcoal p-6 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 sticky top-24">
-                            <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-gray-800 dark:text-white"><div className="w-1 h-6 bg-brand-gold rounded-full"></div> Categories</h3>
-                            <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0">
-                                {categories.map(cat => (
-                                    <button
-                                        key={cat}
-                                        onClick={() => setActiveCategory(cat)}
-                                        className={`px-4 py-2 rounded-lg text-left transition-all text-sm font-medium whitespace-nowrap ${activeCategory === cat
-                                            ? 'bg-brand-green/10 text-brand-green font-bold border-l-4 border-brand-green'
-                                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-white/5'
-                                            }`}
-                                    >
-                                        {cat}
-                                    </button>
-                                ))}
-                            </div>
+            <section className="px-5 pb-20 sm:px-8 lg:px-12">
+                <div className="mx-auto max-w-7xl">
+                    <div className="mb-8 flex flex-col gap-4 border-y border-[#B88A3D]/18 py-5 lg:flex-row lg:items-center lg:justify-between">
+                        <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+                            <SlidersHorizontal size={18} className="text-[#D4A84B]" />
+                            Categories
+                        </div>
+                        <div className="flex gap-2 overflow-x-auto pb-1">
+                            {categories.map(cat => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    className={`whitespace-nowrap border px-4 py-2 text-sm font-semibold transition-colors ${activeCategory === cat
+                                        ? 'border-[#D4A84B] bg-[#D4A84B] text-[#0E0E0E]'
+                                        : 'border-[#B88A3D]/25 text-white/65 hover:border-[#D4A84B] hover:text-white'
+                                        }`}
+                                >
+                                    {cat}
+                                </button>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Product Grid */}
-                    <div className="flex-grow">
-                        {loading ? (
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                                {[1, 2, 3, 4].map(n => (
-                                    <div key={n} className="bg-gray-100 dark:bg-gray-800 h-64 rounded-xl animate-pulse"></div>
-                                ))}
-                            </div>
-                        ) : filteredProducts.length === 0 ? (
-                            <div className="text-center py-20 bg-white dark:bg-brand-charcoal rounded-2xl border border-gray-100 dark:border-gray-800">
-                                <Search size={48} className="mx-auto text-gray-300 mb-4" />
-                                <p className="text-gray-500 font-medium">No products found matching your search.</p>
-                                <button onClick={() => { setSearchQuery(''); setActiveCategory('All'); }} className="mt-4 text-brand-green font-bold hover:underline">Clear Filters</button>
-                            </div>
-                        ) : (
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                                {filteredProducts.map(product => (
-                                    <ProductCard key={product.id} product={product} />
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    {loading ? (
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map(n => (
+                                <div key={n} className="h-80 animate-pulse border border-[#B88A3D]/15 bg-[#141414]" />
+                            ))}
+                        </div>
+                    ) : filteredProducts.length === 0 ? (
+                        <div className="border border-[#B88A3D]/22 bg-[#141414] px-6 py-16 text-center">
+                            <Search size={42} className="mx-auto mb-4 text-[#D4A84B]" />
+                            <p className="font-serif text-3xl font-semibold text-white">No products found.</p>
+                            <p className="mt-3 text-white/58">Try a different search or category.</p>
+                            <button onClick={() => { setSearchQuery(''); setActiveCategory('All'); }} className="mt-6 border border-[#B88A3D]/45 px-5 py-3 text-sm font-bold uppercase tracking-[0.16em] text-[#D4A84B]">
+                                Clear Filters
+                            </button>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                            {filteredProducts.map(product => (
+                                <ProductCard key={product.id} product={product} />
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </div>
+            </section>
         </div>
     );
 };

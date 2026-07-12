@@ -5,7 +5,7 @@ import { isComingSoonMode } from '../config/site';
 
 const Layout = ({ children }) => {
     return (
-        <div className="min-h-screen flex flex-col bg-brand-cream dark:bg-brand-dark dark:text-gray-100 transition-colors duration-300 font-sans">
+        <div className="min-h-screen flex flex-col bg-[#0E0E0E] text-[#F0EAD6] transition-colors duration-300 font-sans">
             <Navbar />
             <main className="flex-grow">
                 {children}
