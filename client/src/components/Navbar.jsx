@@ -1,13 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingBag, Utensils, Info, Phone, Moon, Sun, Menu, X, Clock, Search } from 'lucide-react';
+import { Home, Info, Menu, Search, ShoppingBag, Utensils, X } from 'lucide-react';
 import clsx from 'clsx';
-import useTheme from '../hooks/useTheme';
-import { isComingSoonMode, LOGOS } from '../config/site';
+import { CONTACT, isComingSoonMode, LOGOS } from '../config/site';
+
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Market', path: '/market' },
+  { name: 'Kitchen', path: '/kitchen' },
+  { name: 'Catering', path: '/catering' },
+  { name: 'Pickup', path: '/pickup' },
+  { name: 'About', path: '/about' },
+  { name: 'Contact', path: '/contact' },
+];
+
+const bottomLinks = [
+  { name: 'Home', path: '/', icon: Home },
+  { name: 'Market', path: '/market', icon: Search },
+  { name: 'Kitchen', path: '/kitchen', icon: Utensils },
+  { name: 'Info', path: '/contact', icon: Info },
+];
 
 const Navbar = () => {
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,127 +32,132 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Market', path: '/market' },
-    { name: 'Kitchen', path: '/kitchen' },
-    { name: 'Catering', path: '/catering' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
-
-  // In Coming Soon mode, strictly hide all navigation
   if (isComingSoonMode) {
     return null;
   }
 
   return (
     <>
-      {/* Top Bar (Info) - Hidden on Mobile */}
-      <div className="bg-brand-charcoal text-white text-xs py-2 px-4 hidden md:flex justify-between items-center z-50">
-        <div className="container mx-auto flex justify-between">
-          <div className="flex gap-6 opacity-90">
-            <span className="flex items-center gap-1"><Clock size={12} className="text-brand-gold" /> Daily: 9am - 10pm</span>
-            <span className="flex items-center gap-1"><Phone size={12} className="text-brand-gold" /> (123)-456-789</span>
-          </div>
-          <div className="flex gap-4">
-            <Link to="/contact" className="hover:text-brand-gold transition-colors">Support</Link>
-          </div>
+      <div className="hidden border-b border-[#B88A3D]/15 bg-[#0E0E0E] text-xs text-[#F0EAD6]/70 md:block">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2">
+          <span className="uppercase tracking-[0.28em] text-[#D4A84B]">{CONTACT.city}</span>
+          <span>Premium Halal Grocery · Fresh Fish · Authentic Bangladeshi Restaurant</span>
         </div>
       </div>
 
-      {/* Main Header */}
       <header
         className={clsx(
-          "sticky top-0 z-40 w-full transition-all duration-300 border-b border-brand-green/10 backdrop-blur-md",
+          'sticky top-0 z-40 border-b backdrop-blur-xl transition-all duration-300',
           isScrolled
-            ? "bg-white/95 dark:bg-brand-charcoal/95 shadow-sm py-2"
-            : "bg-white dark:bg-brand-charcoal py-4"
+            ? 'border-[#B88A3D]/25 bg-[#0E0E0E]/92 shadow-[0_18px_60px_rgba(0,0,0,0.28)]'
+            : 'border-[#B88A3D]/12 bg-[#0E0E0E]/82'
         )}
       >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-
-          {/* Logo */}
-          <Link to="/" className="flex items-center group" aria-label="5 Spice Market & Kitchen home">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
+          <Link to="/" className="flex items-center" aria-label="5 Spice Market & Kitchen home">
             <img
               src={LOGOS.wide}
               alt="5 Spice Market & Kitchen"
-              className="h-11 md:h-12 w-auto object-contain transition-opacity group-hover:opacity-90"
+              className="h-12 w-auto object-contain transition-opacity hover:opacity-90 md:h-14"
             />
           </Link>
 
-          {/* Desktop Nav - Sprouts Style (Clean, Spacious) */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={clsx(
-                  "text-sm font-medium tracking-wide transition-colors relative group py-2",
-                  location.pathname === link.path ? "text-brand-green font-bold dark:text-brand-gold" : "text-brand-charcoal dark:text-gray-200 hover:text-brand-green dark:hover:text-brand-gold"
-                )}
-              >
-                {link.name}
-                <span className={clsx(
-                  "absolute bottom-0 left-0 w-0 h-0.5 bg-brand-gold transition-all duration-300 group-hover:w-full",
-                  location.pathname === link.path ? "w-full" : ""
-                )}></span>
-              </Link>
-            ))}
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Main navigation">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={clsx(
+                    'relative py-2 text-sm font-medium tracking-[0.16em] transition-colors',
+                    isActive ? 'text-[#D4A84B]' : 'text-[#F0EAD6]/74 hover:text-white'
+                  )}
+                >
+                  {link.name}
+                  <span
+                    className={clsx(
+                      'absolute inset-x-0 -bottom-1 h-px bg-[#D4A84B] transition-transform',
+                      isActive ? 'scale-x-100' : 'scale-x-0'
+                    )}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Actions */}
-          <div className="hidden md:flex items-center gap-4">
-            <button onClick={toggleTheme} className="p-2 text-gray-400 hover:text-brand-gold transition-colors">
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <Link to="/market" className="bg-brand-green hover:bg-brand-lightGreen text-white px-6 py-2.5 rounded-full font-bold shadow-sm hover:shadow-md transition-all text-sm">
-              Shop Market
+          <div className="hidden items-center gap-3 md:flex">
+            <Link
+              to="/market"
+              className="border border-[#B88A3D]/45 px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.16em] text-[#F0EAD6] transition-colors hover:border-[#D4A84B] hover:text-[#D4A84B]"
+            >
+              Explore Market
+            </Link>
+            <Link
+              to="/kitchen"
+              className="bg-[#2D6A3F] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#245936]"
+            >
+              View Menu
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button className="lg:hidden p-2 text-brand-charcoal dark:text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center border border-[#B88A3D]/30 text-[#F0EAD6] transition-colors hover:border-[#D4A84B] hover:text-[#D4A84B] lg:hidden"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-white dark:bg-brand-charcoal z-30 pt-24 px-6 lg:hidden animate-fade-in">
-          <nav className="flex flex-col gap-6 text-center">
-            {navLinks.map(link => (
-              <Link key={link.name} to={link.path} onClick={() => setMobileMenuOpen(false)} className="text-xl font-serif font-bold text-brand-charcoal dark:text-white border-b border-gray-100 dark:border-gray-800 pb-4">
+        <div className="fixed inset-0 z-30 bg-[#0E0E0E]/98 px-6 pb-24 pt-28 lg:hidden">
+          <nav className="mx-auto flex max-w-sm flex-col gap-3 text-center" aria-label="Mobile navigation">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                onClick={() => setMobileMenuOpen(false)}
+                className="border border-[#B88A3D]/20 px-5 py-4 font-serif text-xl font-semibold text-[#F0EAD6] transition-colors hover:border-[#D4A84B] hover:text-[#D4A84B]"
+              >
                 {link.name}
               </Link>
             ))}
-            <Link to="/market" onClick={() => setMobileMenuOpen(false)} className="bg-brand-green text-white py-3 rounded-full font-bold text-lg mt-4 block mx-auto w-full shadow-lg">Shop Market</Link>
+            <Link to="/market" onClick={() => setMobileMenuOpen(false)} className="mt-3 bg-[#2D6A3F] px-5 py-4 font-bold uppercase tracking-[0.18em] text-white">
+              Explore Market
+            </Link>
           </nav>
         </div>
       )}
 
-      {/* Mobile Bottom Nav (Sticky) - Hidden in specific modes or scroll states if desired, but kept for utility */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-brand-charcoal/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 z-50 pb-safe shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-        <div className="flex justify-around items-center h-16">
-          <Link to="/" className={clsx("flex flex-col items-center p-2", location.pathname === '/' ? "text-brand-green" : "text-gray-400")}>
-            <ShoppingBag size={20} /> <span className="text-[10px] mt-1 font-medium">Home</span>
+      <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-[#B88A3D]/20 bg-[#0E0E0E]/95 pb-safe shadow-[0_-18px_60px_rgba(0,0,0,0.32)] backdrop-blur-xl md:hidden" aria-label="Mobile quick navigation">
+        <div className="mx-auto grid h-16 max-w-md grid-cols-5 items-center">
+          {bottomLinks.slice(0, 2).map((link) => {
+            const Icon = link.icon;
+            const isActive = location.pathname === link.path;
+            return (
+              <Link key={link.path} to={link.path} className={clsx('flex flex-col items-center gap-1 text-[0.68rem] font-medium', isActive ? 'text-[#D4A84B]' : 'text-[#F0EAD6]/55')}>
+                <Icon size={19} />
+                {link.name}
+              </Link>
+            );
+          })}
+          <Link to="/market" aria-label="Explore Market" className="mx-auto -mt-7 flex h-14 w-14 items-center justify-center rounded-full border-4 border-[#0E0E0E] bg-[#2D6A3F] text-white shadow-lg">
+            <ShoppingBag size={24} />
           </Link>
-          <Link to="/market" className={clsx("flex flex-col items-center p-2", location.pathname === '/market' ? "text-brand-green" : "text-gray-400")}>
-            <Search size={20} /> <span className="text-[10px] mt-1 font-medium">Market</span>
-          </Link>
-          {/* Center Action Button */}
-          <div className="relative -top-5">
-            <Link to="/market" className="bg-brand-green text-white p-4 rounded-full shadow-lg border-4 border-white dark:border-brand-charcoal block">
-              <ShoppingBag size={24} />
-            </Link>
-          </div>
-          <Link to="/kitchen" className={clsx("flex flex-col items-center p-2", location.pathname === '/kitchen' ? "text-brand-green" : "text-gray-400")}>
-            <Utensils size={20} /> <span className="text-[10px] mt-1 font-medium">Kitchen</span>
-          </Link>
-          <Link to="/contact" className={clsx("flex flex-col items-center p-2", location.pathname === '/contact' ? "text-brand-green" : "text-gray-400")}>
-            <Info size={20} /> <span className="text-[10px] mt-1 font-medium">Info</span>
-          </Link>
+          {bottomLinks.slice(2).map((link) => {
+            const Icon = link.icon;
+            const isActive = location.pathname === link.path;
+            return (
+              <Link key={link.path} to={link.path} className={clsx('flex flex-col items-center gap-1 text-[0.68rem] font-medium', isActive ? 'text-[#D4A84B]' : 'text-[#F0EAD6]/55')}>
+                <Icon size={19} />
+                {link.name}
+              </Link>
+            );
+          })}
         </div>
       </nav>
     </>

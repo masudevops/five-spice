@@ -1,64 +1,43 @@
 import React from 'react';
-import { Truck, MapPin, ShoppingBag, Clock } from 'lucide-react';
+import { Clock, PackageCheck, ShoppingBag, Truck } from 'lucide-react';
+
+const steps = [
+    { title: 'Browse', text: 'Explore groceries and kitchen menu previews before visiting.', icon: ShoppingBag },
+    { title: 'Request', text: 'Pickup and delivery workflows will be confirmed closer to opening.', icon: Clock },
+    { title: 'Collect', text: 'Orders will be carefully prepared for pickup or local delivery.', icon: Truck },
+];
 
 const Pickup = () => {
     return (
-        <div className="bg-brand-cream dark:bg-brand-dark min-h-screen">
-            {/* Hero */}
-            <div className="bg-brand-green text-white py-16 text-center">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-serif font-bold mb-4">Grocery Pickup & Delivery</h1>
-                    <p className="text-xl opacity-90">Enjoy 5 Spice quality from the comfort of your home.</p>
+        <div className="min-h-screen bg-[#0E0E0E] text-[#F0EAD6]">
+            <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(45,106,63,0.16),transparent_34%),linear-gradient(135deg,#0E0E0E,#161616)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <PackageCheck className="mb-5 text-[#D4A84B]" size={34} strokeWidth={1.4} />
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#D4A84B]">Pickup & Delivery</p>
+                    <h1 className="mt-5 font-serif text-5xl font-bold text-white md:text-6xl">Designed for convenient family meals.</h1>
+                    <p className="mt-5 max-w-2xl text-lg leading-8 text-white/68">
+                        Pickup and delivery details will be finalized as opening approaches. For now, browse what is coming and plan your first visit.
+                    </p>
                 </div>
-            </div>
+            </section>
 
-            <div className="container mx-auto px-4 py-12">
-                {/* Steps */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 px-4">
-                    <div className="text-center p-6 bg-white dark:bg-brand-charcoal rounded-xl shadow-md">
-                        <div className="bg-brand-red/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-red">
-                            <ShoppingBag size={32} />
-                        </div>
-                        <h3 className="font-bold text-xl mb-2">1. Shop Online</h3>
-                        <p className="text-gray-500">Browse our full catalogue of groceries, meats, and prepared foods.</p>
-                    </div>
-                    <div className="text-center p-6 bg-white dark:bg-brand-charcoal rounded-xl shadow-md">
-                        <div className="bg-brand-gold/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-gold">
-                            <Clock size={32} />
-                        </div>
-                        <h3 className="font-bold text-xl mb-2">2. Choose a Slot</h3>
-                        <p className="text-gray-500">Select a convenient pickup time or delivery window.</p>
-                    </div>
-                    <div className="text-center p-6 bg-white dark:bg-brand-charcoal rounded-xl shadow-md">
-                        <div className="bg-brand-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-green">
-                            <Truck size={32} />
-                        </div>
-                        <h3 className="font-bold text-xl mb-2">3. We Deliver</h3>
-                        <p className="text-gray-500">Our team carefully packs your order and brings it to your door.</p>
-                    </div>
+            <section className="px-5 pb-20 sm:px-8 lg:px-12">
+                <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+                    {steps.map((step) => {
+                        const Icon = step.icon;
+                        return (
+                            <article key={step.title} className="border border-[#B88A3D]/25 bg-[#141414] p-7 text-center">
+                                <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full border border-[#B88A3D]/40 text-[#D4A84B]">
+                                    <Icon size={28} strokeWidth={1.4} />
+                                </div>
+                                <h2 className="font-serif text-3xl font-semibold text-white">{step.title}</h2>
+                                <p className="mt-4 leading-7 text-white/62">{step.text}</p>
+                            </article>
+                        );
+                    })}
                 </div>
-
-                {/* Delivery Map / Zones */}
-                <div className="flex flex-col md:flex-row gap-8 items-center bg-white dark:bg-brand-charcoal rounded-2xl shadow-xl overflow-hidden">
-                    <div className="md:w-1/2 h-80 bg-gray-200 relative">
-                        {/* Placeholder for Map */}
-                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-bold bg-gray-300 dark:bg-gray-800">
-                            <MapPin size={48} className="mr-2" /> Interactive Delivery Map Area
-                        </div>
-                    </div>
-                    <div className="md:w-1/2 p-8">
-                        <h2 className="text-3xl font-serif font-bold mb-4 text-brand-red">We Deliver to DFW</h2>
-                        <p className="text-gray-600 dark:text-gray-300 mb-6">
-                            Currently serving Plano, Richardson, Frisco, Garland, and North Dallas. Check your zip code to see if you are in our delivery zone.
-                        </p>
-                        <div className="flex gap-4 mb-4">
-                            <input type="text" placeholder="Enter Zip Code" className="border p-3 rounded-lg flex-grow dark:bg-gray-700 dark:border-gray-600" />
-                            <button className="bg-brand-charcoal text-white px-6 py-3 rounded-lg font-bold">Check</button>
-                        </div>
-                        <p className="text-sm text-gray-400 italic">*Delivery fees may apply based on distance.</p>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
     );
 };

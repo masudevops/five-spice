@@ -1,58 +1,55 @@
 import React from 'react';
+import { HandHeart, Leaf, ShieldCheck } from 'lucide-react';
+import { OFFERINGS } from '../config/site';
+
+const values = [
+    { title: 'Zabiha halal care', text: 'A grocery and kitchen experience designed around trusted halal standards.', icon: ShieldCheck },
+    { title: 'Fresh daily essentials', text: 'Produce, fish, meat, spices, rice, frozen goods, and pantry staples for family cooking.', icon: Leaf },
+    { title: 'Community first', text: 'Built for Bangladeshi, Pakistani, Indian, Middle Eastern, and Greater DFW communities.', icon: HandHeart },
+];
 
 const About = () => {
     return (
-        <div className="container mx-auto px-4 py-12">
-            <div className="max-w-3xl mx-auto text-center mb-12">
-                <h1 className="text-4xl font-bold text-brand-orange mb-4">Our Story</h1>
-                <div className="w-24 h-1 bg-brand-gold mx-auto mb-6"></div>
-                <p className="text-xl text-gray-600">
-                    Opening in Plano, Texas in early 2027 with premium halal groceries and authentic Bangladeshi cuisine, In Sha Allah.
-                </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
-                <div>
-                    <img
-                        src="https://placehold.co/600x400?text=Five+Spice+Storefront"
-                        alt="5 Spice Storefront"
-                        className="rounded-lg shadow-xl"
-                    />
-                </div>
-                <div>
-                    <h2 className="text-2xl font-bold text-brand-dark mb-4">A Culinary Journey</h2>
-                    <p className="text-gray-700 mb-4 leading-relaxed">
-                        5 Spice Market & Kitchen was born from a desire to bring premium halal groceries, fresh produce, fresh fish, premium zabiha halal meat, and authentic Bangladeshi cuisine to the heart of Plano. We recognized a need for a place where families could shop for the freshest halal ingredients and enjoy the comfort of home-cooked meals.
-                    </p>
-                    <p className="text-gray-700 leading-relaxed">
-                        Our mission is simple: <strong>Authentic Flavors. Quality You Trust. Community We Care About.</strong> Whether you are looking for the perfect spice blend for your biryani or a full family meal, 5 Spice is your destination.
+        <div className="min-h-screen bg-[#0E0E0E] text-[#F0EAD6]">
+            <section className="relative overflow-hidden px-5 py-16 sm:px-8 lg:px-12">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(184,138,61,0.14),transparent_34%),linear-gradient(135deg,#0E0E0E,#161616)]" />
+                <div className="relative mx-auto max-w-7xl">
+                    <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#D4A84B]">Our Story</p>
+                    <h1 className="mt-5 max-w-4xl font-serif text-5xl font-bold leading-tight text-white md:text-6xl">
+                        Five spices. One home for groceries, food, and community.
+                    </h1>
+                    <p className="mt-6 max-w-3xl text-lg leading-8 text-white/68">
+                        5 Spice Market & Kitchen was created to bring premium halal groceries, fresh ingredients, and authentic Bangladeshi cuisine together in Plano.
                     </p>
                 </div>
-            </div>
+            </section>
 
-            <div className="bg-brand-green text-white rounded-xl p-8 md:p-12 text-center">
-                <h2 className="text-2xl font-bold mb-4">Certified Halal</h2>
-                <p className="mb-6 max-w-2xl mx-auto">
-                    We take pride in serving 100% Zabiha Halal meat. Our butchers are trained to provide the best cuts for your daily cooking needs.
-                </p>
-                <p className="mb-6 max-w-2xl mx-auto text-white/85">
-                    Proudly serving the Bangladeshi, Pakistani, Indian, Middle Eastern, and wider DFW community.
-                </p>
-                <div className="flex justify-center gap-6">
-                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                        <span className="block text-2xl font-bold text-brand-gold">100%</span>
-                        <span className="text-sm">Halal Certified</span>
-                    </div>
-                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                        <span className="block text-2xl font-bold text-brand-gold">Fresh</span>
-                        <span className="text-sm">Daily Produce</span>
-                    </div>
-                    <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                        <span className="block text-2xl font-bold text-brand-gold">Local</span>
-                        <span className="text-sm">DFW Favorite</span>
+            <section className="px-5 pb-20 sm:px-8 lg:px-12">
+                <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-3">
+                    {values.map((value) => {
+                        const Icon = value.icon;
+                        return (
+                            <article key={value.title} className="border border-[#B88A3D]/25 bg-[#141414] p-7">
+                                <Icon className="mb-5 text-[#D4A84B]" size={30} strokeWidth={1.4} />
+                                <h2 className="font-serif text-2xl font-semibold text-white">{value.title}</h2>
+                                <p className="mt-4 leading-7 text-white/62">{value.text}</p>
+                            </article>
+                        );
+                    })}
+                </div>
+
+                <div className="mt-8 border border-[#B88A3D]/25 bg-[#101010] p-7 md:p-10">
+                    <h2 className="font-serif text-3xl font-semibold text-[#D4A84B]">What 5 Spice will bring to Plano</h2>
+                    <div className="mt-7 grid gap-5 md:grid-cols-3">
+                        {OFFERINGS.map((offering) => (
+                            <div key={offering.title}>
+                                <h3 className="font-serif text-2xl font-semibold text-white">{offering.title}</h3>
+                                <p className="mt-3 text-sm leading-7 text-white/62">{offering.text}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
     );
 };
