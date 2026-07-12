@@ -2,53 +2,45 @@ import { test, expect } from '@playwright/test';
 
 test.describe('5 Spice Website E2E', () => {
 
-    test('Homepage loads with correct Hero text', async ({ page }) => {
+    test('Coming soon homepage loads with finalized brand text', async ({ page }) => {
         await page.goto('/');
 
-        // Verify Page Title is present (Logo)
-        await expect(page.getByRole('link', { name: '5 Spice Market &' })).toBeVisible();
-
-        // Verify Hero Text
-        await expect(page.getByText('COMING SOON TO DFW')).toBeVisible();
-        await expect(page.getByRole('heading', { name: 'Bringing Together the Flavors' })).toBeVisible();
+        await expect(page).toHaveTitle(/5 Spice Market & Kitchen/);
+        await expect(page.getByRole('img', { name: '5 Spice Market & Kitchen' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'A New Home Is Coming to Plano, Texas.' })).toBeVisible();
+        await expect(page.getByText('Named after "পাঁচফোড়ন" — the traditional five-spice blend at the heart of every South Asian kitchen.')).toBeVisible();
+        await expect(page.getByText('Premium Halal Grocery • Fresh Produce • Fresh Fish • Authentic Bangladeshi Restaurant')).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Premium Halal Market' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Authentic Bangladeshi Restaurant' })).toBeVisible();
+        await expect(page.getByRole('heading', { name: 'Serving the DFW Community' })).toBeVisible();
+        await expect(page.getByText('Opening Early 2027, In Sha Allah')).toBeVisible();
+        await expect(page.getByText('Follow our journey to opening day.')).toBeVisible();
+        await expect(page.getByRole('link', { name: 'info@5spicemarket.com' })).toBeVisible();
+        await expect(page.getByRole('link', { name: '5 Spice Market on Facebook' })).toBeVisible();
+        await expect(page.getByRole('link', { name: 'Instagram @5SpiceMarket profile URL to be confirmed' })).toBeVisible();
     });
 
-    test('Navigation to Supermarket works', async ({ page }) => {
-        await page.goto('/');
-        await page.click('text=Supermarket');
+    test('Legacy cafe path redirects to Kitchen route', async ({ page }) => {
+        await page.goto('/cafe');
 
-        await expect(page).toHaveURL(/.*supermarket/);
-        await expect(page.getByPlaceholder('Search products...')).toBeVisible();
-        await expect(page.getByText('Halal Supermarket')).toBeVisible();
+        await expect(page).toHaveURL(/.*\/kitchen/);
+        await expect(page.getByRole('heading', { name: 'The 5 Spice Kitchen' })).toBeVisible();
     });
 
-    test('Navigation to Restaurant works', async ({ page }) => {
-        await page.goto('/');
-        await page.click('text=Restaurant');
-
-        await expect(page).toHaveURL(/.*restaurant/);
-        await expect(page.getByText('The 5 Spice Kitchen')).toBeVisible();
-    });
-
-    test('Pickup & Delivery CTA works', async ({ page }) => {
+    test('Primary navigation is hidden but direct routes remain available in coming soon mode', async ({ page }) => {
         await page.goto('/');
 
-        // Click the Order Online button
-        await page.getByRole('link', { name: 'Order Online – Pickup & Delivery' }).click();
-
-        await expect(page).toHaveURL(/.*pickup/);
-        await expect(page.getByRole('heading', { name: 'Grocery Pickup & Delivery' })).toBeVisible();
-        await expect(page.getByText('Interactive Delivery Map Area')).toBeVisible();
+        await expect(page.getByRole('navigation')).toHaveCount(0);
+        await page.goto('/market');
+        await expect(page.getByRole('heading', { name: 'Halal Market' })).toBeVisible();
     });
 
-    test('Weekly Sales page loads', async ({ page }) => {
-        await page.goto('/sales');
-        await expect(page.getByRole('heading', { name: 'Weekly Specials' })).toBeVisible();
-    });
+    test('Coming soon page has no horizontal overflow on mobile', async ({ page }) => {
+        await page.setViewportSize({ width: 375, height: 812 });
+        await page.goto('/');
 
-    test('Catering page loads', async ({ page }) => {
-        await page.goto('/catering');
-        await expect(page.getByRole('heading', { name: 'Make Your Event Unforgettable' })).toBeVisible();
+        const hasOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+        expect(hasOverflow).toBe(false);
     });
 
 });

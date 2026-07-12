@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 5 Spice Market & Cafe - Management Script
+# 5 Spice Market & Kitchen - Management Script
 # This script helps you easily manage the application development lifecycle.
 
 # Colors for output
@@ -10,7 +10,7 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}=========================================${NC}"
-echo -e "${BLUE}   5 Spice Market & Cafe - Manager       ${NC}"
+echo -e "${BLUE}   5 Spice Market & Kitchen - Manager    ${NC}"
 echo -e "${BLUE}=========================================${NC}"
 echo ""
 

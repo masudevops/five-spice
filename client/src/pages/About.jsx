@@ -4,10 +4,10 @@ const About = () => {
     return (
         <div className="container mx-auto px-4 py-12">
             <div className="max-w-3xl mx-auto text-center mb-12">
-                <h1 className="text-4xl font-bold text-brand-red mb-4">Our Story</h1>
+                <h1 className="text-4xl font-bold text-brand-orange mb-4">Our Story</h1>
                 <div className="w-24 h-1 bg-brand-gold mx-auto mb-6"></div>
                 <p className="text-xl text-gray-600">
-                    Serving the Dallas-Fort Worth community with premium Halal groceries and authentic cuisine since 2024.
+                    Opening in Plano, Texas in early 2027 with premium halal groceries and authentic Bangladeshi cuisine, In Sha Allah.
                 </p>
             </div>
 
@@ -22,18 +22,21 @@ const About = () => {
                 <div>
                     <h2 className="text-2xl font-bold text-brand-dark mb-4">A Culinary Journey</h2>
                     <p className="text-gray-700 mb-4 leading-relaxed">
-                        5 Spice Market & Cafe was born from a desire to bring the vibrant flavors of South Asia and the Middle East to the heart of Texas. We recognized a need for a place where families could not only shop for the freshest Halal ingredients but also enjoy the comfort of home-cooked meals.
+                        5 Spice Market & Kitchen was born from a desire to bring premium halal groceries, fresh produce, fresh fish, premium zabiha halal meat, and authentic Bangladeshi cuisine to the heart of Plano. We recognized a need for a place where families could shop for the freshest halal ingredients and enjoy the comfort of home-cooked meals.
                     </p>
                     <p className="text-gray-700 leading-relaxed">
-                        Our mission is simple: <strong>Quality, Affordability, and Community.</strong> Whether you are looking for the perfect spice blend for your Biryani or craving a plate of hot Butter Chicken, 5 Spice is your destination.
+                        Our mission is simple: <strong>Authentic Flavors. Quality You Trust. Community We Care About.</strong> Whether you are looking for the perfect spice blend for your biryani or a full family meal, 5 Spice is your destination.
                     </p>
                 </div>
             </div>
 
-            <div className="bg-brand-red text-white rounded-xl p-8 md:p-12 text-center">
+            <div className="bg-brand-green text-white rounded-xl p-8 md:p-12 text-center">
                 <h2 className="text-2xl font-bold mb-4">Certified Halal</h2>
                 <p className="mb-6 max-w-2xl mx-auto">
                     We take pride in serving 100% Zabiha Halal meat. Our butchers are trained to provide the best cuts for your daily cooking needs.
+                </p>
+                <p className="mb-6 max-w-2xl mx-auto text-white/85">
+                    Proudly serving the Bangladeshi, Pakistani, Indian, Middle Eastern, and wider DFW community.
                 </p>
                 <div className="flex justify-center gap-6">
                     <div className="bg-white/10 p-4 rounded-lg backdrop-blur-sm">

@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ProductCard from '../components/ProductCard';
 import { Search } from 'lucide-react';
 
 const Market = () => {
     const [products, setProducts] = useState([]);
-    const [filteredProducts, setFilteredProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [activeCategory, setActiveCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
@@ -16,7 +15,6 @@ const Market = () => {
             .then(res => res.json())
             .then(data => {
                 setProducts(data);
-                setFilteredProducts(data);
                 setLoading(false);
             })
             .catch(err => {
@@ -26,7 +24,7 @@ const Market = () => {
             });
     }, []);
 
-    useEffect(() => {
+    const filteredProducts = useMemo(() => {
         let result = products;
         if (activeCategory !== 'All') {
             result = result.filter(p => p.category === activeCategory);
@@ -34,7 +32,7 @@ const Market = () => {
         if (searchQuery) {
             result = result.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()));
         }
-        setFilteredProducts(result);
+        return result;
     }, [activeCategory, searchQuery, products]);
 
     return (

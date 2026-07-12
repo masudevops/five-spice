@@ -1,6 +1,6 @@
 {
-    "name": "5 Spice Market & Cafe",
-    "address": "123 Halal Ave, Dallas, TX 75001",
+    "name": "5 Spice Market & Kitchen",
+    "address": "Plano, TX",
     "phone": "(123)-456-789",
     "email": "info@5spiceMarket.com",
     "hours": {
@@ -10,7 +10,7 @@
         "Sun": "9:00 AM - 10:00 PM"
     },
     "socials": {
-        "facebook": "https://facebook.com",
-        "instagram": "https://instagram.com"
+        "facebook": "https://facebook.com/5SpiceMarket",
+        "instagram": "TODO: Confirm official Instagram URL for @5SpiceMarket"
     }
 }
